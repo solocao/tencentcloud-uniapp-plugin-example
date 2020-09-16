@@ -1,0 +1,12 @@
+{
+  "name": "uniapp",
+  "version": "1.0.0",
+  "description": "##### uni-app腾讯云插件",
+  "main": "main.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vod-js-sdk-v6": "^1.4.8"
+  }
+}

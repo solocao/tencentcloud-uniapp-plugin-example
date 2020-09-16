@@ -1,0 +1,112 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "腾讯云uni-app插件示例"
+			}
+		},
+		{
+			"path": "pages/cos/index",
+			"style": {
+				"navigationBarTitleText": "对象存储(COS)示例"
+			}
+		},
+		{
+			"path": "pages/sms/index",
+			"style": {
+				"navigationBarTitleText": "短信(SMS)示例"
+			}
+		},
+		{
+			"path": "pages/sms/sms",
+			"style": {
+				"navigationBarTitleText": "发送短信"
+			}
+		},
+		{
+			"path": "pages/sms/verification",
+			"style": {
+				"navigationBarTitleText": "验证码场景示例"
+			}
+		},
+		{
+			"path": "pages/sms/statistics",
+			"style": {
+				"navigationBarTitleText": "短信套餐包信息"
+			}
+		},
+		{
+			"path": "pages/ocr/index",
+			"style": {
+				"navigationBarTitleText": "OCR示例"
+			}
+		},
+		{
+			"path": "pages/vod/index",
+			"style": {
+				"navigationBarTitleText": "云点播(VOD)示例"
+			}
+		},
+		{
+			"path": "pages/ims/index",
+			"style": {
+				"navigationBarTitleText": "图片内容安全(IMS)示例"
+			}
+		},
+		{
+			"path": "pages/tms/index",
+			"style": {
+				"navigationBarTitleText": "文本安全(TMS)示例"
+			}
+		},
+		{
+			"path": "pages/captcha/index",
+			"style": {
+				"navigationBarTitleText": "验证码示例"
+			}
+		},
+		{
+			"path": "pages/tiia/index",
+			"style": {
+				"navigationBarTitleText": "图像分析示例"
+			}
+		},
+		{
+			"path": "pages/asr/index",
+			"style": {
+				"navigationBarTitleText": "语音识别示例"
+			}
+		},
+		{
+			"path": "pages/asr/sentenceRecognition",
+			"style": {
+				"navigationBarTitleText": "一句话识别示例"
+			}
+		},
+		{
+			"path": "pages/asr/recTask",
+			"style": {
+				"navigationBarTitleText": "录音文件识别示例"
+			}
+		},
+		{
+			"path": "pages/asr/realTime",
+			"style": {
+				"navigationBarTitleText": "实时语音示例"
+			}
+		},
+    {
+    	"path": "pages/soe/index",
+    	"style": {
+    		"navigationBarTitleText": "口语评测示例"
+    	}
+    }
+  ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}

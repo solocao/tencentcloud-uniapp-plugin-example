@@ -1,0 +1,5 @@
+/.idea
+/node_modules
+/unpackage
+/cloudfunctions-tcb/tencentcloud-plugin/node_modules
+**/.DS_Store

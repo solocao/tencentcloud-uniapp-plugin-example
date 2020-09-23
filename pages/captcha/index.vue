@@ -26,7 +26,7 @@
 import {
   captchaCreater,
   describeCaptchaResult,
-} from "@/js_sdk/tencentcloud-plugin-capcha";
+} from "@/js_sdk/tencentcloud-plugin-captcha";
 import uniPopup from "@/components/uni-popup/uni-popup.vue";
 
 export default {

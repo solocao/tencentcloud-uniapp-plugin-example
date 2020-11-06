@@ -9,9 +9,11 @@
         <button type="default">录音文件识别</button>
       </navigator>
       <!-- #endif -->
+      <!-- #ifndef APP-PLUS -->
       <navigator url="/pages/asr/realTime">
         <button type="default">实时语音识别</button>
       </navigator>
+      <!-- #endif -->
     </view>
   </div>
 </template>

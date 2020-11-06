@@ -17,7 +17,7 @@
 
 <script>
   import imageModeration from '@/js_sdk/tencentcloud-plugin-ims/image-moderation.js';
-  import chooseFile from '@/js_sdk/tencentcloud-plugin-ims/choose-file.js';
+  import chooseImage2Base64 from '@/js_sdk/tencentcloud-plugin-ims/choose-image-2base64.js';
 
   export default {
     data() {
@@ -66,25 +66,21 @@
       },
       // 通过选择文件识别图片内容
       async scanByFile() {
-        const [file] = await chooseFile('image/*');
-        var reader = new FileReader();
-        reader.onload = async () => {
-          this.result = null;
-          uni.showLoading({
-            mask: true,
+        const base64Data = await chooseImage2Base64();
+        uni.showLoading({
+          mask: true,
+        });
+        try {
+          const result = await imageModeration(base64Data);
+          this.result = result;
+        } catch (error) {
+          uni.showToast({
+            icon: 'none',
+            title: error.message,
           });
-          try {
-            const result = await imageModeration(reader.result.split('64,')[1]);
-            this.result = result;
-            uni.hideLoading();
-          } catch (error) {
-            uni.showToast({
-              icon: 'none',
-              title: error.message,
-            });
-          }
-        }
-        reader.readAsDataURL(file);
+         } finally {
+           uni.hideLoading();
+         }
       },
     }
   };

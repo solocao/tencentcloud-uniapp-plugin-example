@@ -3,14 +3,14 @@
     <view class="content">
       <view class="input">
         <view>视频：</view>
-        <input :value="video && video.name" type="text" placeholder="点击选择" disabled @click="chooseVideo" />
+        <input :value="video && (video.name || video.tempFilePath)" type="text" placeholder="点击选择" disabled @click="chooseVideo" />
       </view>
       <view class="input">
         <view>封面：</view>
-        <input :value="image && image.name" type="text" placeholder="点击选择(可选)" disabled @click="chooseImage" />
+        <input :value="image && (image.name || image.tempFilePaths[0])" type="text" placeholder="点击选择(可选)" disabled @click="chooseImage" />
       </view>
       <button @click="upload">上传视频</button>
-      <view v-if="result" class="result">
+      <view  class="result" v-if="result">
         上传成功，视频ID是：
         <view>{{ result }}</view>
       </view>
@@ -23,10 +23,10 @@
         <input id="mediaId" :value="mediaId" type="text" placeholder="请在腾讯云控制台查看" @input="setValue" />
       </view>
       <button @click="load">加载视频</button>
-<!--      <view v-if="mediaInfo" class="result">
-        <video :src="mediaInfo.AntiTheftUrl || mediaInfo.MediaUrl" :poster="mediaInfo.CoverUrl" />
-      </view> -->
-      <video src="http://1301800460.vod2.myqcloud.com/e3422259vodcq1301800460/8222efb75285890806972086861/YEcHfrVYbFMA.mov" />
+     <view  class="result">
+        <video v-if="mediaInfo" :src="mediaInfo.AntiTheftUrl || mediaInfo.MediaUrl" :poster="mediaInfo.CoverUrl" />
+        <video v-else src="http://1301800460.vod2.myqcloud.com/e3422259vodcq1301800460/8222efb75285890806972086861/YEcHfrVYbFMA.mov" />
+      </view>
     </view>
   </view>
 </template>
@@ -35,8 +35,11 @@
   // #ifdef H5
   import TcVod from 'vod-js-sdk-v6';
   // #endif
+  // #ifdef MP-WEIXIN
+  import VodUploader from 'vod-wx-sdk-v2';
+  // #endif
   import getSignature from '@/js_sdk/tencentcloud-plugin-vod/get-upload-signature.js';
-  import chooseFile from '@/js_sdk/tencentcloud-plugin-cos/choose-file.js';
+  import chooseFile from '@/js_sdk/tencentcloud-plugin-vod/choose-file.js';
   import getMediaInfo from '@/js_sdk/tencentcloud-plugin-vod/get-media-info.js'
 
   export default {
@@ -44,19 +47,33 @@
       return {
         video: null,
         image: null,
-        result: null,
+        result: '',
         mediaId: '',
         mediaInfo: null,
       };
     },
     methods: {
       async chooseVideo() {
-        const [file] = await chooseFile('video/*');
-        this.video = file;
+        try {
+          const [file] = await chooseFile('video/*');
+          this.video = file;
+        } catch (error) {
+          uni.showToast({
+            icon: 'none',
+            title: error.message,
+          });
+        }
       },
       async chooseImage() {
-        const [file] = await chooseFile('image/*');
-        this.image = file;
+        try {
+          const [file] = await chooseFile('image/*');
+          this.image = file;
+        } catch (error) {
+          uni.showToast({
+            icon: 'none',
+            title: error.message,
+          })
+        }
       },
       setValue(e) {
         const { target: { id, value } } = e;
@@ -64,7 +81,7 @@
       },
       // 上传视频
       async upload() {
-        this.result = null;
+        this.result = '';
         if (!this.video) {
           uni.showToast({
             icon: 'none',
@@ -72,25 +89,38 @@
           });
           return;
         }
+        uni.showLoading({
+          mask: true,
+        });
+        // #ifdef MP-WEIXIN
+        const uploader = VodUploader.start({
+          mediaFile: this.video,
+          getSignature: getSignature,
+          coverFile: this.image,
+          finish: (result) => {
+            this.result = result.fileId;
+            uni.hideLoading();
+          },
+          error: (error)  => {
+            console.log(error);
+          },
+        });
+        // #endif
+        // #ifdef H5
         const tcVod = new TcVod({ getSignature });
         const uploader = tcVod.upload({
           mediaFile: this.video,
           coverFile: this.image,
         });
-        uni.showLoading({
-          mask: true,
-        });
+
         try {
           const result = await uploader.done();
-          console.log('resultdone', result)
           this.result = result.fileId;
           uni.hideLoading();
         } catch (error) {
-          uni.showToast({
-            icon: 'none',
-            title: error.message,
-          });
+          console.log(error);
         }
+        // #endif
       },
       // 加载视频信息
       async load() {
@@ -107,7 +137,6 @@
         });
         try {
           const result = await getMediaInfo(this.mediaId);
-          console.log('resulturl', result)
           if (result) {
             this.mediaInfo = result.BasicInfo;
             uni.hideLoading();

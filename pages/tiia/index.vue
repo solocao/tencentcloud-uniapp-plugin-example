@@ -13,7 +13,7 @@
       </uni-collapse-item>
     </uni-collapse>
     <uni-popup ref="popup" type="center" class="popWrap">
-      <div class="popbox" @click="$refs.popup.close()" :style="popStyle">
+      <div class="popbox" @click="$refs.popup.close()">
         <div>图像识别结果：</div>
         <div v-if="orcResults.img">
           <img class="resImg" :src="orcResults.img"  />
@@ -35,10 +35,8 @@ import fns from './fn';
 export default {
   data() {
     return {
-      orcResults: [],
-      popStyle: {
-        width: document.body.clientWidth * 0.9 + "px"
-      }
+      list: [],
+      orcResults: []
     };
   },
   methods: {
@@ -116,8 +114,7 @@ export default {
   margin: 40rpx;
 }
 .uni-popup__wrapper-box {
-  background-color: red;
-  width: 100%;
+  width: 90%;
 }
 .popbox {
   border-radius: 4rpx;
@@ -127,6 +124,11 @@ export default {
   margin: 0 auto;
   font-size: 14px;
 }
+/* #ifdef H5 */
+.popbox {
+  width: 90vw;
+}
+/* #endif */
 .resImg {
   width: 100%;
 }

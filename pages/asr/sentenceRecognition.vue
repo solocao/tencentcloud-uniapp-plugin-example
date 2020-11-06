@@ -31,8 +31,11 @@ export default {
       try {
         this.status = true;
         await this.rec.start();
-      } catch (e) {
-        throw new Error(e);
+      } catch (error) {
+        uni.showToast({
+          icon: 'none',
+          title: error.message,
+        });
       }
     },
     // 停止录音
@@ -55,7 +58,10 @@ export default {
         });
         this.resultText = result.Result;
       } catch (error) {
-        throw new Error(error);
+        uni.showToast({
+          icon: 'none',
+          title: error.message,
+        });
       } finally {
         uni.hideLoading();
       }

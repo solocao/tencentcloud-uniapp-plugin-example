@@ -156,8 +156,11 @@
             this.recorder = new Recorder();
             await this.recorder.start();
           }
-        } catch (e) {
-          throw new Error(e);
+        } catch (error) {
+          uni.showToast({
+            icon: 'none',
+            title: error.message,
+          });
         }
       },
       // 停止录音
@@ -194,7 +197,10 @@
           const result  = await getVoicePoint(voiceBase64, this.refText, params);
           this.resultText = result && result.SuggestedScore;
         } catch (error) {
-          throw new Error(error);
+          uni.showToast({
+            icon: 'none',
+            title: error.message,
+          });
         } finally {
           uni.hideLoading();
         }

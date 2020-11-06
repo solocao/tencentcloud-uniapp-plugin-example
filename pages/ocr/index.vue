@@ -8,7 +8,7 @@
         </uni-collapse-item>
     </uni-collapse>
     <uni-popup ref="popup" type="center" class="popWrap">
-      <div class="popbox" @click="$refs.popup.close()" :style="popStyle">
+      <div class="popbox" @click="$refs.popup.close()">
         <div>OCR识别结果：</div>
         <div v-for="value in orcResults" :key="value.DetectedText">
           {{value.DetectedText||value}}
@@ -34,10 +34,8 @@ import documents from './documents'
 export default {
     data() {
         return {
+          list: [],
           orcResults: [],
-          popStyle: {
-            width: document.body.clientWidth * 0.9 + 'px',
-          }
       }
     },
     methods: {
@@ -68,8 +66,7 @@ export default {
 		margin: 40rpx;
 	}
   .uni-popup__wrapper-box{
-    background-color: red;
-    width: 100%;
+    width: 90%;
   }
   .popbox{
     border-radius: 4rpx;
@@ -79,4 +76,9 @@ export default {
     margin: 0 auto;
     font-size: 14px;
   }
+  /* #ifdef H5 */
+  .popbox {
+    width: 90vw;
+  }
+  /* #endif */
 </style>

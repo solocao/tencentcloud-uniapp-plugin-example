@@ -27,12 +27,15 @@
       </navigator>
       <navigator url="/pages/ims/index">
         <button type="default">图片内容安全(IMS)示例</button>
-    </navigator>
+      </navigator>
       <navigator url="/pages/asr/index">
         <button type="default">语音识别(ASR)示例</button>
       </navigator>
       <navigator url="/pages/soe/index">
         <button type="default">口语评测(SOE)示例</button>
+      </navigator>
+      <navigator url="/pages/httpdns/index">
+        <button type="default">移动解析(HTTPDNS)示例</button>
       </navigator>
     </view>
   </view>

@@ -71,12 +71,13 @@
       return {
         status: false, // 是否开始评测标志
         option: {
-          seqId: '', // 分片序号
+          seqId: 0, // 分片序号
           serverType: 0, // 中英文标志
           scoreCoeff: 1, // 难度指数
           evalMode: 0, // 评估模式
           sessionId: '', // 语音唯一标识
           workMode: 1, // 语音是否分片传输
+          storageMode: 1 // 音频存储模式
         },
         refText: 'dog', // 评估语言对应的文本
         voiceData: '', // 评估语音 BASE64格式
@@ -118,28 +119,43 @@
       },
       // 流式录音procss
       async onProcess(data, isClose) {
-        // #ifdef H5
-        const {data: voiceBase64, seq} = await this.realTimeVoice.realTimeSendTryH5(
-          this.recorder.rec
-        );
-        // #endif
-        // #ifndef H5
-        const {data: voiceBase64, seq} = await this.realTimeVoice.realTimeSendTryMP(data);
-        // #endif
-        this.option.seqId = seq;
+        try{
+          // #ifdef H5
+          const {data: voiceBase64, seq} = await this.realTimeVoice.realTimeSendTryH5(
+            this.recorder.rec
+          );
+          // #endif
+          // #ifndef H5
+          const {data: voiceBase64, seq} = await this.realTimeVoice.realTimeSendTryMP(data);
+          // #endif
+          this.option.seqId = seq;
 
-        // 语音评测参数
-        let params = {
-          sessionId: this.option.sessionId,
-          seqId: seq,
-          isEnd: isClose ? 1 : 0,
-          serverType: Number(this.option.serverType),
-          scoreCoeff: Number(this.option.scoreCoeff),
-          evalMode: Number(this.option.evalMode),
-          workMode: Number(this.option.workMode)
-        };
-        const { result } = await getVoicePoint(voiceBase64, this.refText, params);
-        this.resultText = result.text;
+          if(isClose) {
+            uni.showLoading({
+              mask: true,
+            });
+          }
+
+          // 语音评测参数
+          let params = {
+            sessionId: this.option.sessionId,
+            seqId: seq,
+            isEnd: isClose ? 1 : 0,
+            serverType: Number(this.option.serverType),
+            scoreCoeff: Number(this.option.scoreCoeff),
+            evalMode: 3,
+            workMode: Number(this.option.workMode),
+            storageMode: this.option.storageMode
+          };
+          const result  = await getVoicePoint(voiceBase64, this.refText, params);
+          if(isClose){
+            this.resultText = result && result.SuggestedScore;
+          }
+        } catch (e){
+        } finally {
+          uni.hideLoading();
+        }
+
       },
       // 开始录音
       async startRecord() {
@@ -177,6 +193,13 @@
             voiceBase64 = res.voiceBase64;
           }
 
+          // #ifdef MP
+          // 小程序平台下流式录音在onProcess回调函数里完成评测
+          if(this.option.workMode == workMode.stream) {
+            return;
+          }
+          // #endif
+
           uni.showLoading({
             mask: true,
           });
@@ -186,7 +209,8 @@
             serverType: Number(this.option.serverType),
             scoreCoeff: Number(this.option.scoreCoeff),
             evalMode: Number(this.option.evalMode),
-            workMode: Number(this.option.workMode)
+            workMode: Number(this.option.workMode),
+            storageMode: this.option.storageMode
           };
 
           if(this.option.workMode == 0) {

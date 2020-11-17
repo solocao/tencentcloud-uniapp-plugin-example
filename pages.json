@@ -101,6 +101,12 @@
     	"style": {
     		"navigationBarTitleText": "口语评测示例"
     	}
+    },
+    {
+    	"path": "pages/httpdns/index",
+    	"style": {
+    		"navigationBarTitleText": "移动解析示例"
+    	}
     }
   ],
 	"globalStyle": {

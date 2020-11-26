@@ -21,7 +21,7 @@
  * @param {string} params.imageUrl 需要识别图片的url
  * @returns {Promise<object>} - 检测到的票据信息
  */
-import ocr from "./api.js";
+import ocr from './api.js';
 export default function shipInvoiceOCR({ imageBase64, imageUrl }) {
   return ocr.shipInvoiceOCR({ imageBase64, imageUrl });
 }

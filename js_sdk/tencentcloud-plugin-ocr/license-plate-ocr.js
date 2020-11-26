@@ -21,7 +21,7 @@
  * @param {string} params.imageUrl - 需要识别图片的url
  * @returns {Promise<object>}  - 汽车场景识别结果
  */
-import ocr from "./api.js";
+import ocr from './api.js';
 export default function licensePlateOCR({ imageBase64, imageUrl }) {
   return ocr.licensePlateOCR({ imageBase64, imageUrl });
 }

@@ -22,7 +22,7 @@
  * @param {string} params.cardSide - FRONT 为驾驶证主页正面（有红色印章的一面），BACK 为驾驶证副页正面（有档案编号的一面）。
  * @returns {Promise<object>}  - 汽车场景据识别结果
  */
-import ocr from "./api.js";
+import ocr from './api.js';
 export default function driverLicenseOCR({ imageBase64, imageUrl, cardSide }) {
   return ocr.driverLicenseOCR({ imageBase64, imageUrl, cardSide });
 }

@@ -27,8 +27,8 @@
   margin-top: 20rpx;
 }
 
-.result{
+.result {
   color: red;
-  font-size: 36rpx
+  font-size: 36rpx;
 }
 </style>

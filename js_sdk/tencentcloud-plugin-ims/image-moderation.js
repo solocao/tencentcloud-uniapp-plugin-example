@@ -27,8 +27,8 @@ export default async function imageModeration(content) {
     data: {
       module: 'IMS',
       action: 'imageModeration',
-      content,
-    },
+      content
+    }
   });
   return result;
-};
+}

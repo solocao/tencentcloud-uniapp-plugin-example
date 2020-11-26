@@ -14,21 +14,13 @@
  * limitations under the License.
  */
 
-"use strict";
+'use strict';
 
-import {
-  realtimeVoice,
-} from './realtime-voice.js';
-import {
-  createRecTask,
-  describeTaskStatus
-} from './rec-task.js';
+import { realtimeVoice } from './realtime-voice.js';
+import { createRecTask, describeTaskStatus } from './rec-task.js';
 import { sentenceRecognition } from './sentence-recognition';
 import randStr from './rand-str.js';
-import {
-  blob2Base64,
-  blob2ArrayBuffer
-} from './blob-transfer';
+import { blob2Base64, blob2ArrayBuffer } from './blob-transfer';
 import Recorder from './recorder.js';
 import RealTimeVoiceSplit from './real-time-voice-split.js';
 
@@ -38,8 +30,8 @@ export {
   describeTaskStatus, // 录音文件识别结果查询
   sentenceRecognition, // 一句话识别
   randStr, // 生成n位随机码
-  blob2Base64,  // blob文件转换base64格式
+  blob2Base64, // blob文件转换base64格式
   blob2ArrayBuffer, // blob文件转换ArrayBuffer格式
   Recorder, // 录音类，通过Recorder.getRec()进行进行调用
-  RealTimeVoiceSplit  // 实时语音数据分片类
-}
+  RealTimeVoiceSplit // 实时语音数据分片类
+};

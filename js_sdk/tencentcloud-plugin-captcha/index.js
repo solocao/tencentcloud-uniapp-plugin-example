@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-"use strict";
+'use strict';
 
 /**
  * 加载验证码JS文件
@@ -22,10 +22,10 @@
 function loadScript(url) {
   return new Promise((resolve, reject) => {
     if (window.TencentCaptcha === undefined) {
-      let script = document.createElement("script");
-      let head = document.getElementsByTagName("head")[0];
-      script.type = "text/javascript";
-      script.charset = "UTF-8";
+      const script = document.createElement('script');
+      const head = document.getElementsByTagName('head')[0];
+      script.type = 'text/javascript';
+      script.charset = 'UTF-8';
       script.src = url;
       head.appendChild(script);
       // 当脚本加载完成
@@ -34,7 +34,7 @@ function loadScript(url) {
       };
       // 脚本加载失败
       script.onerror = function () {
-        reject(new Error("验证码脚本加载失败，请重试"));
+        reject(new Error('验证码脚本加载失败，请重试'));
       };
     } else {
       resolve();
@@ -51,14 +51,14 @@ function loadScript(url) {
 async function captchaCreater(callback, options) {
   try {
     // 加载远程验证码脚本
-    await loadScript("https://ssl.captcha.qq.com/TCaptcha.js");
+    await loadScript('https://ssl.captcha.qq.com/TCaptcha.js');
     // 从云函数中获取配置的AppId
     const { result } = await uniCloud.callFunction({
-      name: "tencentcloud-plugin",
+      name: 'tencentcloud-plugin',
       data: {
-        module: "CAPTCHA",
-        action: "getAppId",
-      },
+        module: 'CAPTCHA',
+        action: 'getAppId'
+      }
     });
     return new TencentCaptcha(`${result}`, callback, options);
   } catch (error) {
@@ -86,17 +86,17 @@ async function describeCaptchaResult({
   sceneId,
   macAddress,
   imei,
-  needGetCaptchaTime,
+  needGetCaptchaTime
 }) {
   try {
     if (!captchaType || !ticket || !randstr) {
-      throw new Error("缺少必要参数");
+      throw new Error('缺少必要参数');
     }
     const result = await uniCloud.callFunction({
-      name: "tencentcloud-plugin",
+      name: 'tencentcloud-plugin',
       data: {
-        module: "CAPTCHA",
-        action: "describeCaptchaResult",
+        module: 'CAPTCHA',
+        action: 'describeCaptchaResult',
         CaptchaType: captchaType,
         Ticket: ticket,
         Randstr: randstr,
@@ -104,8 +104,8 @@ async function describeCaptchaResult({
         SceneId: sceneId,
         MacAddress: macAddress,
         Imei: imei,
-        NeedGetCaptchaTime: needGetCaptchaTime,
-      },
+        NeedGetCaptchaTime: needGetCaptchaTime
+      }
     });
     return result;
   } catch (error) {

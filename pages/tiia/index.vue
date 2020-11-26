@@ -16,10 +16,10 @@
       <div class="popbox" @click="$refs.popup.close()">
         <div>图像识别结果：</div>
         <div v-if="orcResults.img">
-          <img class="resImg" :src="orcResults.img"  />
+          <img class="resImg" :src="orcResults.img" />
         </div>
         <div v-else v-for="value in orcResults" :key="value">
-          {{value}}
+          {{ value }}
         </div>
       </div>
     </uni-popup>
@@ -27,9 +27,9 @@
 </template>
 
 <script>
-import uniCollapse from "@/components/uni-collapse/uni-collapse.vue";
-import uniCollapseItem from "@/components/uni-collapse-item/uni-collapse-item.vue";
-import uniPopup from "@/components/uni-popup/uni-popup.vue";
+import uniCollapse from '@/components/uni-collapse/uni-collapse.vue';
+import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vue';
+import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import fns from './fn';
 
 export default {
@@ -40,67 +40,67 @@ export default {
     };
   },
   methods: {
-    onLoad: function() {
+    onLoad() {
       this.list = [
         {
-          title: "图像质量检测相关接口",
+          title: '图像质量检测相关接口',
           child: [
             {
-              title: "图像质量评估",
-              fn: "handleAssessQuality"
-            },
+              title: '图像质量评估',
+              fn: 'handleAssessQuality'
+            }
           ]
         },
         {
-          title: "图像审核相关接口",
+          title: '图像审核相关接口',
           child: [
             {
-              title: "恶心检测",
-              fn: "handleDetectDisgust"
+              title: '恶心检测',
+              fn: 'handleDetectDisgust'
             },
             {
-              title: "不良行为识别",
-              fn: "handleDetectMisbehavior"
-            },
+              title: '不良行为识别',
+              fn: 'handleDetectMisbehavior'
+            }
           ]
         },
         {
-          title: "图像理解相关接口",
+          title: '图像理解相关接口',
           child: [
             {
-              title: "图像标签",
-              fn: "handleDetectLabel"
+              title: '图像标签',
+              fn: 'handleDetectLabel'
             },
             {
-              title: "车辆识别",
-              fn: "handleRecognizeCar"
+              title: '车辆识别',
+              fn: 'handleRecognizeCar'
             },
             {
-              title: "商品识别",
-              fn: "handleDetectProduct"
+              title: '商品识别',
+              fn: 'handleDetectProduct'
             },
             {
-              title: "公众人物识别",
-              fn: "handleDetectCelebrity"
-            },
+              title: '公众人物识别',
+              fn: 'handleDetectCelebrity'
+            }
           ]
         },
         {
-          title: "图片处理相关接口",
+          title: '图片处理相关接口',
           child: [
             {
-              title: "图像清晰度增强",
-              fn: "handleEnhanceImage"
+              title: '图像清晰度增强',
+              fn: 'handleEnhanceImage'
             },
             {
-              title: "图片智能裁剪",
-              fn: "handleCropImage"
-            },
+              title: '图片智能裁剪',
+              fn: 'handleCropImage'
+            }
           ]
-        },
+        }
       ];
     },
-    fn: function(method) {
+    fn(method) {
       this[method]();
     },
     ...fns

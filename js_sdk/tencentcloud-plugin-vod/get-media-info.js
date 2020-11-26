@@ -27,8 +27,8 @@ export default async function getMediaInfo(mediaId) {
     data: {
       module: 'VOD',
       action: 'getMediaInfo',
-      mediaId,
-    },
+      mediaId
+    }
   });
   return result;
-};
+}

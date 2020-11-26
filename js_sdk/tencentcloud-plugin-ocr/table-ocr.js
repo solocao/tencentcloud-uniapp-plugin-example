@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import ocr from "./api.js";
+import ocr from './api.js';
 /**
  * 行业文档-表格识别 https://cloud.tencent.com/document/product/866/34936
  * @param {object} params - 参数包装对象
@@ -23,5 +23,5 @@ import ocr from "./api.js";
  * @returns {Promise<object>} TextDetections -检测到的文本信息 Data -Base64编码后的Excel数据。
  */
 export default function tableOCR({ imageBase64, imageUrl }) {
-  return ocr.tableOCR({ imageBase64, imageUrl })
+  return ocr.tableOCR({ imageBase64, imageUrl });
 }

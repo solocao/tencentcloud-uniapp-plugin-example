@@ -26,8 +26,8 @@ export default async function getFileAccessUrl(key) {
     data: {
       module: 'COS',
       action: 'getObjectURL',
-      key,
-    },
+      key
+    }
   });
   return result;
-};
+}

@@ -22,11 +22,7 @@
  * @param {string} [params.cardSide] - FRONT：有照片的一面（人像面），BACK：无照片的一面（国徽面），该参数如果不填或填错，将为您自动判断正反面。
  * @returns {Promise<object>} - 检测到的证件信息
  */
-import ocr from "./api.js";
-export default function hmtResidentPermitOCR({
-  imageBase64,
-  imageUrl,
-  cardSide,
-}) {
+import ocr from './api.js';
+export default function hmtResidentPermitOCR({ imageBase64, imageUrl, cardSide }) {
   return ocr.hmtResidentPermitOCR({ imageBase64, imageUrl, cardSide });
 }

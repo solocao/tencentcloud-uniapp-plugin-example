@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-"use strict";
-import {
-  filePath2Base64,
-  blob2Base64
-} from './util.js';
+'use strict';
+import { filePath2Base64, blob2Base64 } from './util.js';
 
 /**
  * 选择图片转换为Base64格式输出
@@ -27,8 +24,8 @@ import {
 export default async function chooseImage2Base64() {
   return new Promise(async (resolve, reject) => {
     try {
-      let [error, res] = await uni.chooseImage({
-        count: 1,
+      const [error, res] = await uni.chooseImage({
+        count: 1
       });
       if (error) {
         throw new Error(error);
@@ -48,12 +45,10 @@ export default async function chooseImage2Base64() {
       // #ifdef MP
       base64Data = await uni.getFileSystemManager().readFile({
         filePath: tempFilePath,
-        encoding: "base64",
-        success: ({
-          data
-        }) => {
+        encoding: 'base64',
+        success: ({ data }) => {
           resolve(data);
-        },
+        }
       });
       // #endif
       // #ifdef APP-PLUS
@@ -64,5 +59,5 @@ export default async function chooseImage2Base64() {
     } catch (error) {
       throw new Error(error);
     }
-  })
+  });
 }

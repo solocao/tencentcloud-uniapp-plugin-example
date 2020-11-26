@@ -1,28 +1,24 @@
 <template>
   <div class="wrapper">
     <div>语音识别结果：</div>
-    <div class="result">{{resultText}}</div>
+    <div class="result">{{ resultText }}</div>
     <button @click="startRecord" v-bind:disabled="status">{{ status ? '正在录音中...' : '开始录音' }}</button>
     <button @click="endRecord" v-bind:disabled="!status">停止录音</button>
   </div>
 </template>
 <script>
-import {
-  sentenceRecognition,
-  toBase64,
-  Recorder,
-} from "@/js_sdk/tencentcloud-plugin-asr";
+import { sentenceRecognition, toBase64, Recorder } from '@/js_sdk/tencentcloud-plugin-asr';
 
 export default {
   data() {
     return {
-      resultText: "", // 语音识别结果
-      rec: "", // recorder实例
-      status: false, // 是否在录制状态
+      resultText: '', // 语音识别结果
+      rec: '', // recorder实例
+      status: false // 是否在录制状态
     };
   },
   methods: {
-    onLoad: function () {
+    onLoad() {
       // 初始化录音实例
       this.rec = new Recorder();
     },
@@ -34,7 +30,7 @@ export default {
       } catch (error) {
         uni.showToast({
           icon: 'none',
-          title: error.message,
+          title: error.message
         });
       }
     },
@@ -45,28 +41,28 @@ export default {
         // 录音完成获取录音文件和音频大小
         const { voiceBase64, size } = await this.rec.stop();
         uni.showLoading({
-          mask: true,
+          mask: true
         });
         // 发起一句话识别请求
         const { result } = await sentenceRecognition({
-          engSerViceType: "8k_zh",
+          engSerViceType: '8k_zh',
           sourceType: 1,
-          voiceFormat: "mp3",
-          usrAudioKey: "test",
+          voiceFormat: 'mp3',
+          usrAudioKey: 'test',
           dataLen: size,
-          data: voiceBase64,
+          data: voiceBase64
         });
         this.resultText = result.Result;
       } catch (error) {
         uni.showToast({
           icon: 'none',
-          title: error.message,
+          title: error.message
         });
       } finally {
         uni.hideLoading();
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

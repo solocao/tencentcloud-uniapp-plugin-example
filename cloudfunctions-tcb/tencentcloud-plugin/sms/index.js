@@ -22,12 +22,12 @@ const sendSMS = require('./send-sms');
 const sendVerificationCode = require('./send-verification-code');
 const checkVerificationCode = require('./check-verification-code');
 const getPackagesStatistics = require('./get-packages-statistics');
-const getExtraReportInfo = () => ({ 'sms_appid': appId });
+const getExtraReportInfo = () => ({ sms_appid: appId });
 
 module.exports = {
   sendSMS,
   sendVerificationCode,
   checkVerificationCode,
   getPackagesStatistics,
-  getExtraReportInfo,
+  getExtraReportInfo
 };

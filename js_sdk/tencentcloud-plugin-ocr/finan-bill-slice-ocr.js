@@ -21,7 +21,7 @@
  * @param {string} params.imageUrl - 需要识别图片的url
  * @returns {Promise<object>} - 检测到的票据信息
  */
-import ocr from "./api.js";
+import ocr from './api.js';
 export default function finanBillSliceOCR({ imageBase64, imageUrl }) {
   return ocr.finanBillSliceOCR({ imageBase64, imageUrl });
 }

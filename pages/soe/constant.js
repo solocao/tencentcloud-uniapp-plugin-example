@@ -15,20 +15,20 @@
  */
 // 评估语言 0:英文 1：中文
 export const serverType = {
-  'en': 0,
-  'zh': 1
-}
+  en: 0,
+  zh: 1
+};
 
 // 评估模式 0：词模式 1：句子模式 2：段落模式 3：自由说模式
 export const evalMode = {
-  'word': 0,
-  'sentence': 1,
-  'paragraph': 2,
-  'freeSpeak': 3
-}
+  word: 0,
+  sentence: 1,
+  paragraph: 2,
+  freeSpeak: 3
+};
 
 // 上传方式 0：流式 1：非流式
 export const workMode = {
-  'stream': 0,
-  'unstream': 1
-}
+  stream: 0,
+  unstream: 1
+};

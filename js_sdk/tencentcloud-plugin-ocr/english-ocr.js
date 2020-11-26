@@ -23,17 +23,12 @@
  * @param {boolean} [params.enableCandWord] - 候选字开关，开启可返回识别时多个可能的候选字（每个候选字对应其置信度）。该参数默认值为false。
  * @returns {Promise<object>} TextDetections - 检测到的文本信息
  */
-import ocr from "./api.js";
-export default function englishOCR({
-  imageBase64,
-  imageUrl,
-  enableCoordPoint,
-  enableCandWord,
-}) {
+import ocr from './api.js';
+export default function englishOCR({ imageBase64, imageUrl, enableCoordPoint, enableCandWord }) {
   return ocr.englishOCR({
     imageBase64,
     imageUrl,
     enableCoordPoint,
-    enableCandWord,
+    enableCandWord
   });
 }

@@ -22,7 +22,7 @@
  * @param {string} [params.Scene] - 场景字段，默认不用填写。可选值:only_hw 表示只输出手写体识别结果，过滤印刷体。
  * @returns {Promise<object>} - 检测到的通用文字信息
  */
-import ocr from "./api.js";
+import ocr from './api.js';
 export default function generalHandwritingOCR({ imageBase64, imageUrl }) {
   return ocr.generalHandwritingOCR({ imageBase64, imageUrl });
 }

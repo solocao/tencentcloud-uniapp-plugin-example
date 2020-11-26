@@ -22,11 +22,7 @@
  * @param {boolean} [params.retProfile] - 是否返回头像。默认不返回
  * @returns {Promise<object>} - 返回卡证信息
  */
-import ocr from "./api.js";
-export default function mainlandPermitOCR({
-  imageBase64,
-  imageUrl,
-  retProfile,
-}) {
+import ocr from './api.js';
+export default function mainlandPermitOCR({ imageBase64, imageUrl, retProfile }) {
   return ocr.mainlandPermitOCR({ imageBase64, imageUrl, retProfile });
 }

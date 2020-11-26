@@ -19,55 +19,55 @@ import {
   licensePlateOCR,
   driverLicenseOCR,
   vinOCR,
-  vehicleRegCertOCR,
-} from "@/js_sdk/tencentcloud-plugin-ocr";
+  vehicleRegCertOCR
+} from '@/js_sdk/tencentcloud-plugin-ocr';
 // 选择图片转换为base64编码
-import chooseImage2Base64 from "@/js_sdk/tencentcloud-plugin-ocr/choose-image-2base64.js";
+import chooseImage2Base64 from '@/js_sdk/tencentcloud-plugin-ocr/choose-image-2base64.js';
 
 /**
  * 汽车相关demo列表和调用方法
  */
 export default {
   list: {
-    title: "汽车相关识别",
+    title: '汽车相关识别',
     child: [
       {
-        title: "行驶证识别（主页）",
-        fn: "handleVehicleLicenseOCR",
+        title: '行驶证识别（主页）',
+        fn: 'handleVehicleLicenseOCR'
       },
       {
-        title: "行驶证识别（副页）",
-        fn: "handleVehicleLicenseBackOCR",
+        title: '行驶证识别（副页）',
+        fn: 'handleVehicleLicenseBackOCR'
       },
       {
-        title: "车牌识别",
-        fn: "handleLicensePlateOCR",
+        title: '车牌识别',
+        fn: 'handleLicensePlateOCR'
       },
       {
-        title: "驾驶证识别",
-        fn: "handleDriverLicenseOCR",
+        title: '驾驶证识别',
+        fn: 'handleDriverLicenseOCR'
       },
       {
-        title: "车辆VIN码识别",
-        fn: "handleVinOCR",
+        title: '车辆VIN码识别',
+        fn: 'handleVinOCR'
       },
       {
-        title: "机动车登记证书识别",
-        fn: "handleVehicleRegCertOCR",
-      },
-    ],
+        title: '机动车登记证书识别',
+        fn: 'handleVehicleRegCertOCR'
+      }
+    ]
   },
   fn: {
     // 行驶证识别（主页）
-    handleVehicleLicenseOCR: async function () {
+    async handleVehicleLicenseOCR() {
       try {
         const img = await chooseImage2Base64();
         uni.showLoading({
-          mask: true,
+          mask: true
         });
         const { result } = await vehicleLicenseOCR({
           imageBase64: img,
-          cardSide: "FRONT",
+          cardSide: 'FRONT'
         });
         this.orcResults = [
           `号牌号码：${result.FrontInfo.PlateNo}`,
@@ -80,28 +80,28 @@ export default {
           `车辆识别代号：${result.FrontInfo.Vin}`,
           `发动机号码：${result.FrontInfo.EngineNo}`,
           `注册日期：${result.FrontInfo.RegisterDate}`,
-          `发证日期：${result.FrontInfo.IssueDate}`,
+          `发证日期：${result.FrontInfo.IssueDate}`
         ];
         this.$refs.popup.open();
       } catch (error) {
         uni.showToast({
-          icon: "none",
-          title: error.message,
+          icon: 'none',
+          title: error.message
         });
       } finally {
         uni.hideLoading();
       }
     },
     // 行驶证识别（副页）
-    handleVehicleLicenseBackOCR: async function () {
+    async handleVehicleLicenseBackOCR() {
       try {
         const img = await chooseImage2Base64();
         uni.showLoading({
-          mask: true,
+          mask: true
         });
         const { result } = await vehicleLicenseOCR({
           imageBase64: img,
-          cardSide: "BACK",
+          cardSide: 'BACK'
         });
         this.orcResults = [
           `号牌号码：${result.BackInfo.PlateNo}`,
@@ -112,46 +112,46 @@ export default {
           `检验记录：${result.BackInfo.Record}`,
           `核定载质量：${result.BackInfo.LoadQuality}`,
           `外廓尺寸：${result.BackInfo.ExternalSize}`,
-          `准牵引总质量：${result.BackInfo.TotalQuasiMass}`,
+          `准牵引总质量：${result.BackInfo.TotalQuasiMass}`
         ];
         this.$refs.popup.open();
       } catch (error) {
         uni.showToast({
-          icon: "none",
-          title: error.message,
+          icon: 'none',
+          title: error.message
         });
       } finally {
         uni.hideLoading();
       }
     },
     // 车牌识别
-    handleLicensePlateOCR: async function () {
+    async handleLicensePlateOCR() {
       try {
         const img = await chooseImage2Base64();
         uni.showLoading({
-          mask: true,
+          mask: true
         });
         const { result } = await licensePlateOCR({
           imageBase64: img,
-          cardSide: "BACK",
+          cardSide: 'BACK'
         });
         this.orcResults = [`车牌号码：${result.Number}`];
         this.$refs.popup.open();
       } catch (error) {
         uni.showToast({
-          icon: "none",
-          title: error.message,
+          icon: 'none',
+          title: error.message
         });
       } finally {
         uni.hideLoading();
       }
     },
     // 驾驶证识别
-    handleDriverLicenseOCR: async function () {
+    async handleDriverLicenseOCR() {
       try {
         const img = await chooseImage2Base64();
         uni.showLoading({
-          mask: true,
+          mask: true
         });
         const { result } = await driverLicenseOCR({ imageBase64: img });
         this.orcResults = [
@@ -163,43 +163,43 @@ export default {
           `出生日期：${result.DateOfBirth}`,
           `初次领证日期：${result.DateOfFirstIssue}`,
           `准驾车型：${result.Class}`,
-          `有效期限：${result.StartDate}至${result.EndDate}`,
+          `有效期限：${result.StartDate}至${result.EndDate}`
         ];
         this.$refs.popup.open();
       } catch (error) {
         uni.showToast({
-          icon: "none",
-          title: error.message,
+          icon: 'none',
+          title: error.message
         });
       } finally {
         uni.hideLoading();
       }
     },
     // 车辆VIN码识别
-    handleVinOCR: async function () {
+    async handleVinOCR() {
       try {
         const img = await chooseImage2Base64();
         uni.showLoading({
-          mask: true,
+          mask: true
         });
         const { result } = await vinOCR({ imageBase64: img });
         this.orcResults = [`车辆VIN码：${result.Vin}`];
         this.$refs.popup.open();
       } catch (error) {
         uni.showToast({
-          icon: "none",
-          title: error.message,
+          icon: 'none',
+          title: error.message
         });
       } finally {
         uni.hideLoading();
       }
     },
     // 机动车登记证书识别
-    handleVehicleRegCertOCR: async function () {
+    async handleVehicleRegCertOCR() {
       try {
         const img = await chooseImage2Base64();
         uni.showLoading({
-          mask: true,
+          mask: true
         });
         const { result } = await vehicleRegCertOCR({ imageBase64: img });
         this.orcResults = result.VehicleRegCertInfos.map((data) => {
@@ -208,12 +208,12 @@ export default {
         this.$refs.popup.open();
       } catch (error) {
         uni.showToast({
-          icon: "none",
-          title: error.message,
+          icon: 'none',
+          title: error.message
         });
       } finally {
         uni.hideLoading();
       }
-    },
-  },
+    }
+  }
 };

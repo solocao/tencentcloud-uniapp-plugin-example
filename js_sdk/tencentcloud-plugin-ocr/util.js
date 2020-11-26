@@ -22,17 +22,21 @@
 export async function filePath2Base64(filePath) {
   return new Promise((resolve, reject) => {
     try {
-      plus.io.resolveLocalFileSystemURL(filePath, function(entry) {
-        entry.file(function(file) {
-          const fileReader = new plus.io.FileReader();
-          fileReader.readAsDataURL(file, 'utf-8');
-          fileReader.onloadend = function(evt) {
-            resolve(evt.target.result);
-          }
-        });
-      }, function(e) {
-        reject(e.message);
-      });
+      plus.io.resolveLocalFileSystemURL(
+        filePath,
+        function (entry) {
+          entry.file(function (file) {
+            const fileReader = new plus.io.FileReader();
+            fileReader.readAsDataURL(file, 'utf-8');
+            fileReader.onloadend = function (evt) {
+              resolve(evt.target.result);
+            };
+          });
+        },
+        function (e) {
+          reject(e.message);
+        }
+      );
     } catch (error) {
       reject(error);
     }
@@ -47,7 +51,7 @@ export async function filePath2Base64(filePath) {
 export async function blob2Base64(file) {
   return new Promise((resolve, reject) => {
     try {
-      let fileReader = new FileReader();
+      const fileReader = new FileReader();
       fileReader.onloadend = async () => {
         resolve(fileReader.result);
       };

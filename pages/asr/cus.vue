@@ -6,18 +6,17 @@
   </div>
 </template>
 <script>
-import { sentenceRecognition } from "@/js_sdk/tencentcloud-plugin-asr";
-import { MediaStream } from "@/js_sdk/tencentcloud-plugin-asr/webrtc";
+import { sentenceRecognition } from '@/js_sdk/tencentcloud-plugin-asr';
+import { MediaStream } from '@/js_sdk/tencentcloud-plugin-asr/webrtc';
 export default {
   data() {
     return {
-      data: "",
-      rec: "",
+      data: '',
+      rec: ''
     };
   },
   methods: {
-    onLoad: function () {
-    },
+    onLoad() {},
     async startRecord() {
       const stream = await MediaStream.getStream();
       stream.startRecording();
@@ -26,29 +25,24 @@ export default {
       const stream = await MediaStream.getStream();
       const blob = stream.stopRecording();
 
-      var reader = new FileReader();
-      reader.onloadend = async function () {
-        
-      };
+      const reader = new FileReader();
+      reader.onloadend = async function () {};
       reader.readAsDataURL(blob);
     },
-    playVoice() {
-    },
+    playVoice() {},
     base64ToUint8Array(base64String) {
-      let padding = "=".repeat((4 - (base64String.length % 4)) % 4);
-      let base64 = (base64String + padding)
-        .replace(/\-/g, "+")
-        .replace(/_/g, "/");
+      const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+      const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
 
-      let rawData = window.atob(base64);
-      let outputArray = new Uint8Array(rawData.length);
+      const rawData = window.atob(base64);
+      const outputArray = new Uint8Array(rawData.length);
 
-      for (var i = 0; i < rawData.length; ++i) {
+      for (let i = 0; i < rawData.length; ++i) {
         outputArray[i] = rawData.charCodeAt(i);
       }
       return outputArray;
-    },
-  },
+    }
+  }
 };
 </script>
 

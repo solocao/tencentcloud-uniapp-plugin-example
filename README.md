@@ -4,3 +4,6 @@
  ![](./static/desc.png)
 
 
+### docker build
+1. docker build -t csighub.tencentyun.com/springrain/uni-app:镜像版本号 ./ 
+2. 进行docker镜像上传 docker push csighub.tencentyun.com/springrain/uni-app:镜像版本号

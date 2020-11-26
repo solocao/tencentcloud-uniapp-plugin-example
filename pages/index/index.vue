@@ -37,6 +37,9 @@
       <navigator url="/pages/httpdns/index">
         <button type="default">移动解析(HTTPDNS)示例</button>
       </navigator>
+      <navigator url="/pages/tts/index">
+        <button type="default">语音合成(TTS)示例</button>
+      </navigator>
     </view>
   </view>
 </template>

@@ -12,18 +12,14 @@
 </template>
 
 <script>
-import {
-  createRecTask,
-  describeTaskStatus,
-  blob2Base64,
-} from "@/js_sdk/tencentcloud-plugin-asr";
+import { createRecTask, describeTaskStatus, blob2Base64 } from '@/js_sdk/tencentcloud-plugin-asr';
 
 export default {
   data() {
     return {
-      inputEl: "",
+      inputEl: '',
       taskId: null,
-      resultText: "", // 语音识别结果
+      resultText: '' // 语音识别结果
     };
   },
   methods: {
@@ -42,8 +38,8 @@ export default {
     chooseFile() {
       return new Promise((resolve, reject) => {
         if (!this.inputEl) {
-          this.inputEl = document.createElement("input");
-          this.inputEl.type = "file";
+          this.inputEl = document.createElement('input');
+          this.inputEl.type = 'file';
           this.$refs.input.$el.appendChild(this.inputEl);
         }
         this.inputEl.onchange = (event) => {
@@ -56,15 +52,15 @@ export default {
     async sendRecord(file, size) {
       try {
         uni.showLoading({
-          mask: true,
+          mask: true
         });
         const { result } = await createRecTask({
-          engineModelType: "8k_zh",
+          engineModelType: '8k_zh',
           channelNum: 1,
           resTextFormat: 0,
           sourceType: 1,
           data: (/.+;\s*base64\s*,\s*(.+)$/i.exec(file) || [])[1],
-          dataLen: size,
+          dataLen: size
         });
         this.taskId = result.Data.TaskId;
       } catch (error) {
@@ -77,21 +73,22 @@ export default {
     async getResult() {
       try {
         uni.showLoading({
-          mask: true,
+          mask: true
         });
         const { result } = await describeTaskStatus(this.taskId);
-        this.resultText =
-          result.Data.StatusStr === "waiting" ||
-          result.Data.StatusStr === "doing"
-            ? "正在解析中，请稍后再试"
-            : result.Data.Result;
+        /* prettier-ignore */
+        this.resultText = (
+          result.Data.StatusStr === 'waiting' || result.Data.StatusStr === 'doing'
+            ? '正在解析中，请稍后再试'
+            : result.Data.Result
+        );
       } catch (error) {
         throw new Error(error);
       } finally {
         uni.hideLoading();
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

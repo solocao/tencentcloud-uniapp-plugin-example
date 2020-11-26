@@ -42,4 +42,4 @@ export default function chooseFile(accept, mutiple) {
     reject(new Error('此方法仅支持在H5平台调用'));
     // #endif
   });
-};
+}

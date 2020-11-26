@@ -22,11 +22,7 @@
  * @param {boolean} params.returnImage - 是否需要返回裁剪后的图片
  * @returns {Promise<object>} - 检测到的票据信息
  */
-import ocr from "./api.js";
-export default function mixedInvoiceDetect({
-  imageBase64,
-  imageUrl,
-  returnImage = false,
-}) {
+import ocr from './api.js';
+export default function mixedInvoiceDetect({ imageBase64, imageUrl, returnImage = false }) {
   return ocr.mixedInvoiceDetect({ imageBase64, imageUrl, returnImage });
 }

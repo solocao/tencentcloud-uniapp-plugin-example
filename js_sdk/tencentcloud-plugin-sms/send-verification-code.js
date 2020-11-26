@@ -27,7 +27,7 @@ export default async function sendVerificationCode(phoneNumber) {
     data: {
       module: 'SMS',
       action: 'sendVerificationCode',
-      phoneNumber,
-    },
+      phoneNumber
+    }
   });
-};
+}

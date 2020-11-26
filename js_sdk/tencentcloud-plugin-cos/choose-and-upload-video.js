@@ -22,7 +22,7 @@ import uploadFile from './upload-file';
  * @return {Promise<string>} 返回成功上传到COS上的文件名称
  */
 export default async function chooseAndUploadVideo() {
-  let [error, res] = await uni.chooseVideo();
+  const [error, res] = await uni.chooseVideo();
   if (error) {
     throw error;
   }
@@ -32,7 +32,7 @@ export default async function chooseAndUploadVideo() {
   }
   // #endif
   uni.showLoading({
-    mask: true,
+    mask: true
   });
   try {
     let file = res.tempFilePath;
@@ -46,4 +46,4 @@ export default async function chooseAndUploadVideo() {
   } finally {
     uni.hideLoading();
   }
-};
+}

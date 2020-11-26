@@ -24,79 +24,81 @@
 </template>
 
 <script>
-  import sendSMS from '@/js_sdk/tencentcloud-plugin-sms/send-sms';
+import sendSMS from '@/js_sdk/tencentcloud-plugin-sms/send-sms';
 
-  export default {
-    data() {
-      return {
-        phoneNumber: '',
-        templateId: '',
-        templateParam: '',
-        lastSendStatus: [],
-      };
+export default {
+  data() {
+    return {
+      phoneNumber: '',
+      templateId: '',
+      templateParam: '',
+      lastSendStatus: []
+    };
+  },
+  methods: {
+    setValue(e) {
+      const {
+        target: { id, value }
+      } = e;
+      this[id] = value;
     },
-    methods: {
-      setValue(e) {
-        const { target: { id, value } } = e;
-        this[id] = value;
-      },
-      // 发送短信示例
-      async sendSMS() {
-        this.lastSendStatus = [];
-        uni.showLoading({
-          mask: true,
+    // 发送短信示例
+    async sendSMS() {
+      this.lastSendStatus = [];
+      uni.showLoading({
+        mask: true
+      });
+      try {
+        const phoneNumbers = this.phoneNumber && this.phoneNumber.split(',');
+        const templateParams = (this.templateParam && this.templateParam.split(',')) || undefined;
+        const { SendStatusSet } = await sendSMS(phoneNumbers, this.templateId, templateParams);
+        this.lastSendStatus = SendStatusSet;
+        uni.hideLoading();
+      } catch (error) {
+        uni.showToast({
+          icon: 'none',
+          title: error.message
         });
-        try {
-          const phoneNumbers = this.phoneNumber && this.phoneNumber.split(',');
-          const templateParams = this.templateParam && this.templateParam.split(',') || undefined;
-          const { SendStatusSet } = await sendSMS(phoneNumbers, this.templateId, templateParams);
-          this.lastSendStatus = SendStatusSet;
-          uni.hideLoading();
-        } catch (error) {
-          uni.showToast({
-            icon: 'none',
-            title: error.message,
-          });
-        }
-      },
+      }
     }
-  };
+  }
+};
 </script>
 
 <style>
-  .content {
-    margin: 40rpx;
-  }
+.content {
+  margin: 40rpx;
+}
 
-  .content button {
-    margin-top: 40rpx;
-  }
+.content button {
+  margin-top: 40rpx;
+}
 
-  .input {
-    display: flex;
-    margin-top: 20rpx;
-  }
+.input {
+  display: flex;
+  margin-top: 20rpx;
+}
 
-  .input view {
-    width: 5rem;
-    text-align: right;
-    font-size: .8rem;
-  }
+.input view {
+  width: 5rem;
+  text-align: right;
+  font-size: 0.8rem;
+}
 
-  .input input {
-    flex: 1 0 0;
-    border: 1px solid #999;
-    border-radius: 8rpx;
-    padding: 4rpx 12rpx;
-  }
+.input input {
+  flex: 1 0 0;
+  border: 1px solid #999;
+  border-radius: 8rpx;
+  padding: 4rpx 12rpx;
+}
 
-  .result {
-    margin-top: 20rpx;
-    padding: 10rpx;
-    border: 1px dashed #81b8ff;
-    border-radius: 8rpx;
-    font-size: 0.75rem;
-    word-break: break-all;
-    user-select: text;
-  }
+.result {
+  margin-top: 20rpx;
+  padding: 10rpx;
+  border: 1px dashed #81b8ff;
+  border-radius: 8rpx;
+  font-size: 0.75rem;
+  word-break: break-all;
+  user-select: text;
+}
 </style>

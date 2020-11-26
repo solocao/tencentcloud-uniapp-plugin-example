@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-"use strict";
-import RecorderJs from "recorder-core/recorder.mp3.min";
+'use strict';
+import RecorderJs from 'recorder-core/recorder.mp3.min';
 /**
  * file文件转换base64格式
  * @param {object} file 需要转换的文件
@@ -23,7 +23,7 @@ import RecorderJs from "recorder-core/recorder.mp3.min";
 async function blob2Base64(file) {
   return new Promise((resolve, reject) => {
     try {
-      let fileReader = new FileReader();
+      const fileReader = new FileReader();
       fileReader.onloadend = async () => {
         resolve(fileReader.result);
       };
@@ -38,10 +38,10 @@ async function blob2Base64(file) {
  * file文件转换ArrayBuffer格式
  * @param {object} file 需要转换的文件
  */
-async function blob2ArrayBuffer(file){
+async function blob2ArrayBuffer(file) {
   return new Promise((resolve, reject) => {
     try {
-      let fileReader = new FileReader();
+      const fileReader = new FileReader();
       fileReader.onloadend = async () => {
         resolve(fileReader.result);
       };
@@ -51,4 +51,3 @@ async function blob2ArrayBuffer(file){
     }
   });
 }
-

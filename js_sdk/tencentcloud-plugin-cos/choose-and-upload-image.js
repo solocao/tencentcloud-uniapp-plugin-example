@@ -22,8 +22,8 @@ import uploadFile from './upload-file';
  * @return {Promise<string>} 返回成功上传到COS上的文件名称
  */
 export default async function chooseAndUploadImage() {
-  let [error, res] = await uni.chooseImage({
-    count: 1,
+  const [error, res] = await uni.chooseImage({
+    count: 1
   });
   if (error) {
     throw error;
@@ -34,7 +34,7 @@ export default async function chooseAndUploadImage() {
   }
   // #endif
   uni.showLoading({
-    mask: true,
+    mask: true
   });
   try {
     let file = res.tempFilePaths[0];
@@ -48,4 +48,4 @@ export default async function chooseAndUploadImage() {
   } finally {
     uni.hideLoading();
   }
-};
+}

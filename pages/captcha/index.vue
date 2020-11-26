@@ -2,32 +2,33 @@
   <view class="wrapper">
     <view class="content">
       <button type="button" @click="showCaptcha">体验验证码</button>
-      <div class="ticket" v-if="result.ticket">验证成功的票据为: {{result.ticket}}</div>
+      <div class="ticket" v-if="result.ticket">验证成功的票据为: {{ result.ticket }}</div>
       <button type="button" v-if="result.ticket" @click="checkCaptcha">校验验证码是否成功</button>
     </view>
     <uni-popup ref="popup" type="center" class="popWrap">
       <div class="popbox" @click="$refs.popup.close()" :style="popStyle">
-        <div>验证码结果：{{result.ret === 0 ? '验证成功' : '用户主动关闭验证码'}}</div>
-        <div v-if="result.ret === 0">验证成功的票据: {{result.ticket}}</div>
+        <div>验证码结果：{{ result.ret === 0 ? '验证成功' : '用户主动关闭验证码' }}</div>
+        <div v-if="result.ret === 0">验证成功的票据: {{ result.ticket }}</div>
       </div>
     </uni-popup>
     <uni-popup ref="checkPopup" type="center" class="popWrap">
       <div class="popbox" @click="$refs.popup.close()" :style="popStyle">
-        <div>验证码校验结果：{{checkResult.CaptchaCode === 1 ? '验证通过' : `验证不通过，错误码：${checkResult.CaptchaCode}`}}</div>
-        <div>CaptchaMsg（状态描述及验证错误信息）: {{checkResult.CaptchaMsg}}</div>
-        <div>EvilLevel（恶意等级）: {{checkResult.EvilLevel}}</div>
-        <div>GetCaptchaTime（前端获取验证码时间）: {{checkResult.GetCaptchaTime}}</div>
+        <div>
+          验证码校验结果：{{
+            checkResult.CaptchaCode === 1 ? '验证通过' : `验证不通过，错误码：${checkResult.CaptchaCode}`
+          }}
+        </div>
+        <div>CaptchaMsg（状态描述及验证错误信息）: {{ checkResult.CaptchaMsg }}</div>
+        <div>EvilLevel（恶意等级）: {{ checkResult.EvilLevel }}</div>
+        <div>GetCaptchaTime（前端获取验证码时间）: {{ checkResult.GetCaptchaTime }}</div>
       </div>
     </uni-popup>
   </view>
 </template>
 
 <script>
-import {
-  captchaCreater,
-  describeCaptchaResult,
-} from "@/js_sdk/tencentcloud-plugin-captcha";
-import uniPopup from "@/components/uni-popup/uni-popup.vue";
+import { captchaCreater, describeCaptchaResult } from '@/js_sdk/tencentcloud-plugin-captcha';
+import uniPopup from '@/components/uni-popup/uni-popup.vue';
 
 export default {
   data() {
@@ -35,16 +36,16 @@ export default {
       result: {},
       checkResult: {},
       popStyle: {
-        width: document.body.clientWidth * 0.9 + "px",
-      },
+        width: `${document.body.clientWidth * 0.9}px`
+      }
     };
   },
   methods: {
     // 触发验证码
-    showCaptcha: async function () {
+    async showCaptcha() {
       try {
         uni.showLoading({
-          mask: true,
+          mask: true
         });
         // 创建验证码实例
         const captcha = await captchaCreater((res) => {
@@ -59,16 +60,16 @@ export default {
       }
     },
     // 校验验证码是否成功
-    checkCaptcha: async function () {
+    async checkCaptcha() {
       try {
         uni.showLoading({
-          mask: true,
+          mask: true
         });
         // 进行验证码校验
         const captcha = await describeCaptchaResult({
           captchaType: 9,
           ticket: this.result.ticket,
-          randstr: this.result.randstr,
+          randstr: this.result.randstr
         });
         // 得到验证码校验结果
         this.checkResult = captcha.result;
@@ -77,9 +78,9 @@ export default {
       } finally {
         uni.hideLoading();
       }
-    },
+    }
   },
-  components: { uniPopup },
+  components: { uniPopup }
 };
 </script>
 

@@ -27,8 +27,8 @@ export default async function textModeration(content) {
     data: {
       module: 'TMS',
       action: 'textModeration',
-      content,
-    },
+      content
+    }
   });
   return result;
-};
+}

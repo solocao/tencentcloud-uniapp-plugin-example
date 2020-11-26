@@ -21,7 +21,7 @@
  * @param {boolean} [params.retImage] - 是否返回图片
  * @returns {Promise<object>} - 返回卡证信息
  */
-import ocr from "./api.js";
+import ocr from './api.js';
 export default function mlidPassportOCR({ imageBase64, imageUrl, retImage }) {
   return ocr.mLIDPassportOCR({ imageBase64, imageUrl, retImage });
 }

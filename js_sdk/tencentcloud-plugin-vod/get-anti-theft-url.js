@@ -27,8 +27,8 @@ export default async function getAntiTheftURL(mediaUrl) {
     data: {
       module: 'VOD',
       action: 'getAntiTheftURL',
-      mediaUrl,
-    },
+      mediaUrl
+    }
   });
   return result;
-};
+}

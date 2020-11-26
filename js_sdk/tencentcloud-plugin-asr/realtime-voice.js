@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-"use strict";
+'use strict';
 
 /**
  * 实时语音识别
@@ -41,21 +41,22 @@
 
 export async function realtimeVoice(data, params) {
   if (
-    !params.engine_model_type ||
-    params.seq === undefined ||
-    params.end === undefined ||
-    params.voice_id === undefined
+    /* prettier-ignore */
+    !params.engine_model_type
+    || params.seq === undefined
+    || params.end === undefined
+    || params.voice_id === undefined
   ) {
-    throw new Error("缺少必要参数");
+    throw new Error('缺少必要参数');
   }
   const result = await uniCloud.callFunction({
-    name: "tencentcloud-plugin",
+    name: 'tencentcloud-plugin',
     data: {
-      module: "ASR",
-      action: "realTimeVoice",
-      data: data,
-      params: params,
-    },
+      module: 'ASR',
+      action: 'realTimeVoice',
+      data,
+      params
+    }
   });
   return result;
 }

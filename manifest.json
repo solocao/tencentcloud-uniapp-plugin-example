@@ -75,7 +75,7 @@
     },
     "h5" : {
         "router" : {
-            "base" : "/uni-demo/"
+            "base" : "./"
         }
     }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-"use strict";
+'use strict';
 
 /**
  * 获取移动解析结果
@@ -25,38 +25,30 @@
  * @param {number?} params.clientip - 是否返回用户公网出口IP 1:返回
  * @param {boolean}  param.isEnc - 是否加密 true(调用企业版API): 加密 false:不加密(调用免费版API)
  */
-async function describeDnsResult({
-  domainName,
-  ip,
-  ttl,
-  clientip,
-  isEnc
-}) {
+async function describeDnsResult({ domainName, ip, ttl, clientip, isEnc }) {
   const domainReg = /^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/;
   if (!domainName || !domainReg.test(domainName)) {
-    throw new Error("请传入正确的域名");
+    throw new Error('请传入正确的域名');
   }
 
-  if(typeof isEnc !== 'boolean') {
-    throw new Error("请确认是否加密");
+  if (typeof isEnc !== 'boolean') {
+    throw new Error('请确认是否加密');
   }
 
-  let { result } = await uniCloud.callFunction({
-    name: "tencentcloud-plugin",
+  const { result } = await uniCloud.callFunction({
+    name: 'tencentcloud-plugin',
     data: {
-      module: "HTTPDNS",
-      action: "describeDnsResult",
-      domainName: domainName,
-      ip: ip,
-      ttl: ttl,
+      module: 'HTTPDNS',
+      action: 'describeDnsResult',
+      domainName,
+      ip,
+      ttl,
       clientip,
-      isEnc: isEnc
-    },
+      isEnc
+    }
   });
 
   return result;
 }
 
-export {
-  describeDnsResult
-};
+export { describeDnsResult };

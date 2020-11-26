@@ -23,11 +23,7 @@
  * @param {boolean} [params.languageType] - 识别语言类型 zh\auto\jap\kor\spa\fre\ger\por\vie\may\rus\ita\hol\swe\fin\dan\nor\hun\tha\lat
  * @returns {Promise<object>} - 检测到的通用文字信息
  */
-import ocr from "./api.js";
-export default function generalBasicOCR({
-  imageBase64,
-  imageUrl,
-  languageType,
-}) {
+import ocr from './api.js';
+export default function generalBasicOCR({ imageBase64, imageUrl, languageType }) {
   return ocr.generalBasicOCR({ imageBase64, imageUrl, languageType });
 }

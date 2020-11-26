@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-"use strict";
+'use strict';
 
-import apis from "./api";
+import apis from './api';
 
 /**
  * 一句话识别api
@@ -36,14 +36,19 @@ import apis from "./api";
  * @return {Promise<object>} result 音频识别结果
  */
 export async function sentenceRecognition(params) {
-  if (!params.engSerViceType || params.sourceType===undefined || !params.voiceFormat || !params.usrAudioKey || (!params.data && !params.url)) {
-    throw new Error("缺少必要参数");
+  if (
+    /* prettier-ignore */
+    !params.engSerViceType
+    || params.sourceType === undefined
+    || !params.voiceFormat
+    || !params.usrAudioKey
+    || (!params.data && !params.url)
+  ) {
+    throw new Error('缺少必要参数');
   }
   return apis.sentenceRecognition({
     ...params,
     ProjectId: 0, // 默认参数
-    SubServiceType: 2, // 默认参数
+    SubServiceType: 2 // 默认参数
   });
 }
-
-

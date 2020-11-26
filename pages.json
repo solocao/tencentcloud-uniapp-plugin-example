@@ -107,6 +107,12 @@
     	"style": {
     		"navigationBarTitleText": "移动解析示例"
     	}
+    },
+    {
+    	"path": "pages/tts/index",
+    	"style": {
+    		"navigationBarTitleText": "语音合成示例"
+    	}
     }
   ],
 	"globalStyle": {

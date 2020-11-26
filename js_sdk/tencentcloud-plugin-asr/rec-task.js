@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-"use strict";
+'use strict';
 
-import apis from "./api";
+import apis from './api';
 
 /**
  * 录音文件识别请求
@@ -39,10 +39,17 @@ import apis from "./api";
  * @return {Promise<object>} result 录音上传结果
  */
 export async function createRecTask(params) {
-  if (!params.engineModelType || !params.channelNum || !params.resTextFormat===undefined || params.sourceType===undefined  || (!params.data && !params.url)) {
-    throw new Error("缺少必要参数");
+  if (
+    /* prettier-ignore */
+    !params.engineModelType
+    || !params.channelNum
+    || !params.resTextFormat === undefined
+    || params.sourceType === undefined
+    || (!params.data && !params.url)
+  ) {
+    throw new Error('缺少必要参数');
   }
-  return apis.createRecTask(params)
+  return apis.createRecTask(params);
 }
 
 /**
@@ -50,9 +57,9 @@ export async function createRecTask(params) {
  * @param {integer} taskId 录音上传后返回的TaskID
  * @return {Promise<object>} result 录音识别结果
  */
-export async function describeTaskStatus(taskId){
+export async function describeTaskStatus(taskId) {
   if (!taskId) {
-    throw new Error("缺少taskId");
+    throw new Error('缺少taskId');
   }
-  return apis.describeTaskStatus({taskId})
+  return apis.describeTaskStatus({ taskId });
 }

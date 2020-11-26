@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-"use strict";
+'use strict';
 
-import apis from "./api";
+import apis from './api';
 
 /**
  * 图像质量评估 https://cloud.tencent.com/document/product/865/36899
@@ -118,7 +118,7 @@ function enhanceImage({ imageUrl, imageBase64 }) {
  */
 function cropImage({ imageUrl, imageBase64, width, height }) {
   if (!width || !height) {
-    throw new Error("需要传入裁剪区域的宽高比例");
+    throw new Error('需要传入裁剪区域的宽高比例');
   }
   return apis.cropImage({ imageUrl, imageBase64, width, height });
 }
@@ -132,5 +132,5 @@ export {
   detectProduct,
   detectCelebrity,
   enhanceImage,
-  cropImage,
+  cropImage
 };

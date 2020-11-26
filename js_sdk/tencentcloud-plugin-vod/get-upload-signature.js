@@ -25,8 +25,8 @@ export default async function getUploadSignature(callback) {
     name: 'tencentcloud-plugin',
     data: {
       module: 'VOD',
-      action: 'getUploadSignature',
-    },
+      action: 'getUploadSignature'
+    }
   });
   // #ifdef H5
   return result;
@@ -34,4 +34,4 @@ export default async function getUploadSignature(callback) {
   // #ifdef MP-WEIXIN
   return callback(result);
   // #endif
-};
+}

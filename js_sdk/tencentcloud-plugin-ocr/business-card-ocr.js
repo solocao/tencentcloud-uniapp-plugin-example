@@ -22,7 +22,7 @@
  * @param {object} [params.config] - 可选字段，根据需要选择是否请求对应字段。目前支持的字段为：RetImageType-“PROPROCESS” 图像预处理，string 类型。Config = {"RetImageType":"PROPROCESS"}
  * @returns {Promise<object>} - 检测到的证件信息
  */
-import ocr from "./api.js";
+import ocr from './api.js';
 export default function businessCardOCR({ imageBase64, imageUrl, config }) {
   return ocr.businessCardOCR({ imageBase64, imageUrl, config });
 }

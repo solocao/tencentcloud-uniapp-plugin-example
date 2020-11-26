@@ -22,7 +22,7 @@
  * @param {array} params.types - 需要识别的票据类型列表，为空或不填表示识别全部类型 0：出租车发票 1：定额发票 2：火车票 3：增值税发票 5：机票行程单 8：通用机打发票 9：汽车票 10：轮船票 11：增值税发票（卷票 ） 12：购车发票 13：过路过桥费发票
  * @returns {Promise<object>} - 检测到的票据信息
  */
-import ocr from "./api.js";
+import ocr from './api.js';
 export default function mixedInvoiceOCR({ imageBase64, imageUrl, types }) {
   return ocr.mixedInvoiceOCR({ imageBase64, imageUrl, types });
 }

@@ -39,21 +39,22 @@ export default function chooseFile(accept, mutiple) {
     inputElement.click();
     // #endif
     // #ifdef MP
-    let error, res;
+    let error;
+    let res;
     if (accept.startsWith('image')) {
       [error, res] = await uni.chooseImage({
-        count: 1,
+        count: 1
       });
     } else if (accept.startsWith('video')) {
       [error, res] = await uni.chooseVideo();
     }
     if (error) {
-      reject(error) ;
+      reject(error);
     }
     resolve([res]);
     // #endif
     // #ifndef H5 || MP
     reject(new Error('此方法仅支持在H5和小程序平台调用'));
     // #endif
-   })
-};
+  });
+}

@@ -34,8 +34,8 @@ export default async function uploadFile(file, key, onProgressUpdate) {
     name: 'tencentcloud-plugin',
     data: {
       module: 'COS',
-      action: 'signPostObjectAPI',
-    },
+      action: 'signPostObjectAPI'
+    }
   });
   const signData = result;
   return new Promise((resolve, reject) => {
@@ -76,7 +76,7 @@ export default async function uploadFile(file, key, onProgressUpdate) {
         'q-ak': signData.ak,
         'q-key-time': signData.keyTime,
         'q-signature': signData.signature,
-        'policy': signData.policy
+        policy: signData.policy
       },
       success(response) {
         if (response.statusCode !== 204) {
@@ -96,4 +96,4 @@ export default async function uploadFile(file, key, onProgressUpdate) {
     });
     onProgressUpdate && uploadTask.onProgressUpdate(onProgressUpdate);
   });
-};
+}

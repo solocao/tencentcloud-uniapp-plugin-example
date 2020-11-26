@@ -15,16 +15,15 @@
 </template>
 
 <script>
-  export default {
-  };
+export default {};
 </script>
 
 <style>
-  .btn-area {
-    margin: 40rpx;
-  }
+.btn-area {
+  margin: 40rpx;
+}
 
-  .btn-area navigator {
-    margin-top: 20rpx;
-  }
+.btn-area navigator {
+  margin-top: 20rpx;
+}
 </style>

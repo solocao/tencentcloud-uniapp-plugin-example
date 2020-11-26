@@ -22,7 +22,7 @@
  * @param {string} params.config - 扩展配置信息。配置格式：{"option1":value1,"option2":value2}
  * @returns {Promise<object>} - 检测到的行业文档信息
  */
-import ocr from "./api.js";
+import ocr from './api.js';
 export default function eduPaperOCR({ imageBase64, imageUrl, config }) {
   return ocr.eduPaperOCR({ imageBase64, imageUrl, config });
 }

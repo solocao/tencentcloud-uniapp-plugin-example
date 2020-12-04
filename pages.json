@@ -113,6 +113,24 @@
     	"style": {
     		"navigationBarTitleText": "语音合成示例"
     	}
+    },
+    {
+    	"path": "pages/tmt/index",
+    	"style": {
+    		"navigationBarTitleText": "机器翻译示例"
+    	}
+    },
+    {
+      "path" : "pages/tmt/textTranslate",
+      "style" : {
+        "navigationBarTitleText": "机器翻译示例-文本翻译"
+      }
+    },
+    {
+      "path" : "pages/tmt/textTranslateBatch",
+      "style" : {
+        "navigationBarTitleText": "机器翻译示例-批量文本翻译"
+      }
     }
   ],
 	"globalStyle": {

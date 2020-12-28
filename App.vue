@@ -14,4 +14,19 @@ export default {
 
 <style>
 /*每个页面公共css */
+@media screen and (min-width: 768px) {
+  html {
+    width: 750px;
+    margin: 0 auto;
+  }
+  .popbox{
+    width: 30vw !important;
+  }
+  uni-app, uni-page-head{
+    position: relative;
+  }
+  uni-page-head .uni-page-head{
+    position: absolute;
+  }
+}
 </style>

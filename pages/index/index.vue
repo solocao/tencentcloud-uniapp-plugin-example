@@ -43,6 +43,9 @@
       <navigator url="/pages/tmt/index">
         <button type="default">机器翻译(TMT)示例</button>
       </navigator>
+      <navigator url="/pages/iai/index">
+        <button type="default">人脸识别(IAI)示例</button>
+      </navigator>
     </view>
   </view>
 </template>
@@ -52,7 +55,7 @@ export default {};
 </script>
 
 <style>
-.page-body{
+.page-body {
   padding-bottom: 20rpx;
 }
 

@@ -52,8 +52,8 @@
       "git add"
     ],
     "*.{js,jsx,vue}": [
-      "prettier --write ./src",
-      "eslint --ext .vue,.js,.jsx --fix ./src",
+      "prettier --write ./",
+      "eslint --ext .vue,.js,.jsx --fix ./",
       "git add"
     ]
   }

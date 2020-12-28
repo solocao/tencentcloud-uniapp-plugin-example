@@ -131,6 +131,30 @@
       "style" : {
         "navigationBarTitleText": "机器翻译示例-批量文本翻译"
       }
+    },
+    {
+    	"path": "pages/iai/index",
+    	"style": {
+    		"navigationBarTitleText": "人脸识别示例"
+    	}
+    },
+    {
+    	"path": "pages/iai/detectFace",
+    	"style": {
+    		"navigationBarTitleText": "人脸识别示例-人脸检测与分析"
+    	}
+    },
+    {
+    	"path": "pages/iai/compareFace",
+    	"style": {
+    		"navigationBarTitleText": "人脸识别示例-人脸比对"
+    	}
+    },
+    {
+    	"path": "pages/iai/detectLiveFace",
+    	"style": {
+    		"navigationBarTitleText": "人脸识别示例-人脸静态活体检测"
+    	}
     }
   ],
 	"globalStyle": {

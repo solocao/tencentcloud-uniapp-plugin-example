@@ -48,6 +48,7 @@ export default {
         const result = await describeDnsResult(params);
         this.ipArr = result.split(';');
         this.domainText = this.domainName;
+        uni.hideLoading();
       } catch (error) {
         uni.showToast({
           icon: 'none',
@@ -55,7 +56,6 @@ export default {
         });
       } finally {
         this.status = false;
-        uni.hideLoading();
       }
     }
   }

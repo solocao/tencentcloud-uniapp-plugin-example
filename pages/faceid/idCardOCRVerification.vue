@@ -1,13 +1,21 @@
 <template>
   <view class="wrapper">
     <view class="content">
+      <view class="form-item"
+        >功能描述：选择身份证人像面照片，用于校验姓名和身份证号的真实性和一致性，并识别身份信息</view
+      >
       <view>
         <button @click="startDetect" v-bind:disabled="status">{{ status ? '检测中' : '开始检测' }}</button>
       </view>
-      <view class="form-item" v-if="detectResult">
-        <view class="title">识别结果</view>
-        <view :style="{ border: '1px dotted #333', padding: '10px' }">
-          <view>活体打分(分数0~100,分数越高，翻拍可能性越低，一般低于40分可判断为翻拍)：{{ detectResult.Score }}</view>
+      <view v-if="detectResult">
+        <view>检测结果:{{ detectResult.Description }}</view>
+        <view>
+          身份信息如下:<br />
+          姓名:{{ detectResult.Name }}<br />
+          身份证号:{{ detectResult.IdCard }}<br />
+          性别:{{ detectResult.Sex }}<br />
+          民族:{{ detectResult.Nation }}<br />
+          出生日期:{{ detectResult.Birth }}<br />
         </view>
       </view>
     </view>
@@ -15,8 +23,8 @@
 </template>
 
 <script>
-import { getDetectLiveFaceResult } from '@/js_sdk/tencentcloud-plugin-iai';
-import chooseImage2Base64 from '@/js_sdk/tencentcloud-plugin-iai/choose-image-2base64.js';
+import { idCardOCRVerification } from '@/js_sdk/tencentcloud-plugin-faceid';
+import chooseImage2Base64 from '@/js_sdk/tencentcloud-plugin-faceid/choose-image-2base64.js';
 
 export default {
   data() {
@@ -28,18 +36,21 @@ export default {
   methods: {
     async startDetect() {
       try {
-        const img = await chooseImage2Base64();
+        const imageBase64 = await chooseImage2Base64();
         this.status = true;
         this.detectResult = '';
         uni.showLoading({
           mask: true
         });
-
-        this.detectResult = await getDetectLiveFaceResult({ image: img });
+        const params = {
+          imageBase64
+        };
+        this.detectResult = await idCardOCRVerification(params);
         uni.hideLoading();
       } catch (error) {
         uni.showToast({
           icon: 'none',
+          duration: 3000,
           title: error.message
         });
       } finally {

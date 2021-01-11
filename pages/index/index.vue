@@ -46,6 +46,9 @@
       <navigator url="/pages/iai/index">
         <button type="default">人脸识别(IAI)示例</button>
       </navigator>
+      <navigator url="/pages/faceid/index">
+        <button type="default">人脸核身(FACEID)示例</button>
+      </navigator>
     </view>
   </view>
 </template>

@@ -94,6 +94,7 @@ export default {
         };
 
         const { TargetTextList } = await getTextTranslateBatchResult(paramsData);
+        uni.hideLoading();
         for (const key in TargetTextList) {
           this.textArr[key].result = TargetTextList[key];
         }
@@ -104,7 +105,6 @@ export default {
         });
       } finally {
         this.status = false;
-        uni.hideLoading();
       }
     }
   }

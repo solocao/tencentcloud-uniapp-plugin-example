@@ -155,6 +155,42 @@
     	"style": {
     		"navigationBarTitleText": "人脸识别示例-人脸静态活体检测"
     	}
+		},
+		{
+    	"path": "pages/faceid/index",
+    	"style": {
+    		"navigationBarTitleText": "人脸核身示例"
+    	}
+		},
+		{
+    	"path": "pages/faceid/livenessRecognition",
+    	"style": {
+    		"navigationBarTitleText": "人脸核身示例-活体人脸核身"
+    	}
+		},
+		{
+    	"path": "pages/faceid/livenessCompare",
+    	"style": {
+    		"navigationBarTitleText": "人脸核身示例-活体人脸比对"
+    	}
+		},
+		{
+    	"path": "pages/faceid/imageRecognition",
+    	"style": {
+    		"navigationBarTitleText": "人脸核身示例-照片人脸核身"
+    	}
+		},
+		{
+    	"path": "pages/faceid/checkIdCardInformation",
+    	"style": {
+    		"navigationBarTitleText": "人脸核身示例-身份证人像照片验真"
+    	}
+		},
+		{
+    	"path": "pages/faceid/idCardOCRVerification",
+    	"style": {
+    		"navigationBarTitleText": "人脸核身示例-身份证识别及信息核验"
+    	}
     }
   ],
 	"globalStyle": {

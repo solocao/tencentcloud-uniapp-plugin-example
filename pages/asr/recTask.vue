@@ -63,10 +63,9 @@ export default {
           dataLen: size
         });
         this.taskId = result.Data.TaskId;
+        uni.hideLoading();
       } catch (error) {
         throw new Error(error);
-      } finally {
-        uni.hideLoading();
       }
     },
     // 录音文件识别结果查询
@@ -82,10 +81,9 @@ export default {
             ? '正在解析中，请稍后再试'
             : result.Data.Result
         );
+        uni.hideLoading();
       } catch (error) {
         throw new Error(error);
-      } finally {
-        uni.hideLoading();
       }
     }
   }

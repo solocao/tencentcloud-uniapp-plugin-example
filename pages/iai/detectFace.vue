@@ -82,13 +82,14 @@ export default {
       try {
         const img = await chooseImage2Base64();
         this.status = true;
-        this.detectResult = '';
+        this.faceInfo = [];
         uni.showLoading({
           mask: true
         });
 
         const result = await getDetectFaceResult({ image: img, needFaceAttributes: 1, needQualityDetection: 1 });
         this.faceInfo = result.FaceInfos;
+        uni.hideLoading();
         this.handerData();
       } catch (error) {
         uni.showToast({
@@ -97,7 +98,6 @@ export default {
         });
       } finally {
         this.status = false;
-        uni.hideLoading();
       }
     }
   }

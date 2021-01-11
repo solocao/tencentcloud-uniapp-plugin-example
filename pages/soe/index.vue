@@ -210,13 +210,12 @@ export default {
 
         const result = await getVoicePoint(voiceBase64, this.refText, params);
         this.resultText = result && result.SuggestedScore;
+        uni.hideLoading();
       } catch (error) {
         uni.showToast({
           icon: 'none',
           title: error.message
         });
-      } finally {
-        uni.hideLoading();
       }
     }
   }

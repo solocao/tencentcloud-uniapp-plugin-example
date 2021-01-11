@@ -53,10 +53,9 @@ export default {
         });
         // 显示验证码
         captcha.show();
+        uni.hideLoading();
       } catch (error) {
         throw new Error(error);
-      } finally {
-        uni.hideLoading();
       }
     },
     // 校验验证码是否成功
@@ -73,10 +72,9 @@ export default {
         });
         // 得到验证码校验结果
         this.checkResult = captcha.result;
+        uni.hideLoading();
       } catch (error) {
         throw new Error(error);
-      } finally {
-        uni.hideLoading();
       }
     }
   },

@@ -64,6 +64,7 @@ export default {
         };
 
         this.detectResult = await getCompareFaceResult(params);
+        uni.hideLoading();
       } catch (error) {
         uni.showToast({
           icon: 'none',
@@ -71,7 +72,6 @@ export default {
         });
       } finally {
         this.status = false;
-        uni.hideLoading();
       }
     }
   }

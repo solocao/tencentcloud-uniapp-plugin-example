@@ -17,6 +17,7 @@
 
 <script>
 import sendVerificationCode from '@/js_sdk/tencentcloud-plugin-sms/send-verification-code';
+import checkVerificationCode from '@/js_sdk/tencentcloud-plugin-sms/check-verification-code';
 
 export default {
   data() {
@@ -71,15 +72,7 @@ export default {
         mask: true
       });
       try {
-        await uniCloud.callFunction({
-          name: 'tencentcloud-plugin',
-          data: {
-            module: 'SMS',
-            action: 'checkVerificationCode',
-            phoneNumber: this.phoneNumber,
-            verificationCode: this.verificationCode
-          }
-        });
+        await checkVerificationCode(this.phoneNumber, this.verificationCode);
         uni.showToast({
           icon: 'none',
           title: '（模拟）登录成功'

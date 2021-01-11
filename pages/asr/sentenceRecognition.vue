@@ -53,13 +53,12 @@ export default {
           data: voiceBase64
         });
         this.resultText = result.Result;
+        uni.hideLoading();
       } catch (error) {
         uni.showToast({
           icon: 'none',
           title: error.message
         });
-      } finally {
-        uni.hideLoading();
       }
     }
   }

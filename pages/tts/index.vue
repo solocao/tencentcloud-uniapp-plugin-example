@@ -123,6 +123,7 @@ export default {
 
         const result = await getTtsResult(paramsData);
         this.audioSrc = result.Audio && `data:audio/wav;base64,${result.Audio}`;
+        uni.hideLoading();
       } catch (error) {
         uni.showToast({
           icon: 'none',
@@ -130,7 +131,6 @@ export default {
         });
       } finally {
         this.status = false;
-        uni.hideLoading();
       }
     }
   }

@@ -80,6 +80,7 @@ export default {
 
         const result = await getTextTranslateResult(paramsData);
         this.translateResult = result.TargetText;
+        uni.hideLoading();
       } catch (error) {
         uni.showToast({
           icon: 'none',
@@ -87,7 +88,6 @@ export default {
         });
       } finally {
         this.status = false;
-        uni.hideLoading();
       }
     }
   }

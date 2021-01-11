@@ -19,13 +19,14 @@ export default {
     width: 750px;
     margin: 0 auto;
   }
-  .popbox{
+  .popbox {
     width: 30vw !important;
   }
-  uni-app, uni-page-head{
+  uni-app,
+  uni-page-head {
     position: relative;
   }
-  uni-page-head .uni-page-head{
+  uni-page-head .uni-page-head {
     position: absolute;
   }
 }

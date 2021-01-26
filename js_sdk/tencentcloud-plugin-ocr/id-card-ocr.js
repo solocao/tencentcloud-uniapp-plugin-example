@@ -25,5 +25,5 @@
  */
 import ocr from './api.js';
 export default function idCardOCR({ imageBase64, imageUrl, cardSide, config }) {
-  return ocr.idCardOCR({ imageBase64, imageUrl, cardSide, config });
+  return ocr.iDCardOCR({ imageBase64, imageUrl, cardSide, config });
 }

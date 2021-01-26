@@ -87,7 +87,7 @@ const function_names = [
   'EnterpriseLicenseOCR',
   'PassportOCR',
   'PermitOCR',
-  'IdCardOCR',
+  'IDCardOCR',
   // 票据单据
   'VatInvoiceOCR',
   'WaybillOCR',
